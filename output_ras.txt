@@ -1,0 +1,70 @@
+PCEB5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\nschiff2\Documents\AutoHECexp\src
+Removing *.pyc and *$py.class.
+['hecConfig.pyc', 'hecModel.pyc', 'runModel.pyc']
+PCEB_rasConfig.py
+Removing *.pyc and *$py.class.
+[]
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCEB', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCEB/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCEB_StationList.txt', 'dssDir': 'HEC-DSSVue'}
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+***********new config***********
+running HEC-RAS...
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCEB', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCEB/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCEB_StationList.txt', 'dssDir': 'HEC-DSSVue'}
+HEC-RAS completed in 0.931439626861 seconds
+PCMS5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\nschiff2\Documents\AutoHECexp\src
+Removing *.pyc and *$py.class.
+['hecConfig.pyc', 'hecModel.pyc', 'parent_hecConfig_Poplar.pyc']
+PCMS_rasConfig.py
+Removing *.pyc and *$py.class.
+[]
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCMS', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCMS/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCMS_StationList.txt', 'dssDir': 'HEC-DSSVue'}
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+***********new config***********
+running HEC-RAS...
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCMS', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCMS/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCMS_StationList.txt', 'dssDir': 'HEC-DSSVue'}
+HEC-RAS completed in 1.39351342442 seconds
+PCSB5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\nschiff2\Documents\AutoHECexp\src
+Removing *.pyc and *$py.class.
+['hecConfig.pyc', 'hecModel.pyc']
+PCSB_rasConfig.py
+Removing *.pyc and *$py.class.
+[]
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCSB', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCSB/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCSB_StationList.txt', 'dssDir': 'HEC-DSSVue'}
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+***********new config***********
+running HEC-RAS...
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCSB', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCSB/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCSB_StationList.txt', 'dssDir': 'HEC-DSSVue'}
+HEC-RAS completed in 0.562508886371 seconds
+PCSH5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\nschiff2\Documents\AutoHECexp\src
+Removing *.pyc and *$py.class.
+['hecConfig.pyc', 'hecModel.pyc']
+PCSH_rasConfig.py
+Removing *.pyc and *$py.class.
+[]
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCSH', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCSH/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCSH_StationList.txt', 'dssDir': 'HEC-DSSVue'}
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+***********new config***********
+running HEC-RAS...
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCSH', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCSH/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCSH_StationList.txt', 'dssDir': 'HEC-DSSVue'}
+HEC-RAS completed in 0.757763028288 seconds
+PCTA5++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+C:\Users\nschiff2\Documents\AutoHECexp\src
+Removing *.pyc and *$py.class.
+['hecConfig.pyc', 'hecModel.pyc']
+PCTA_rasConfig.py
+Removing *.pyc and *$py.class.
+[]
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCTA', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCTA/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCTA_StationList.txt', 'dssDir': 'HEC-DSSVue'}
++++++++++++++++++++++++++++++++ rasProjectName ++++++++++++++++++++++++++++++
+***********new config***********
+running HEC-RAS...
+{'rasPlanName': 'EX100yr24hr', 'rasProjectName': 'PCTA', 'parent_hecConfig': 'parent_hecConfig_Poplar', 'modelVersion': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/', 'hmsDir': 'HEC-HMS', 'rasProjectPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/vtest/RAS/PCTA/', 'modelPath': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/', 'dssCommand': 'HEC-DSSVue.cmd', 'hmsCommand': 'HEC-HMS.cmd', 'scriptPath': 'C:/Users/nschiff2/Documents/AutoHECexp/src', 'stationFileName': 'G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/PCTA_StationList.txt', 'dssDir': 'HEC-DSSVue'}
+HEC-RAS completed in 0.554107775118 seconds
