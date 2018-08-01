@@ -4,150 +4,99 @@ Reclamation District of Greater Chicago Watershed Release Rate project
 at the Illinois State Water Survey (2015-2018).
   *Developed using Python 2.7.11, HEC-HMS 3.5, HEC-RAS 4.0, and HEC-DSSVue 2.0.1
   *Creator(s): Optimatics (optimatics.com); Nicole JS Gaynor, ISWS
-  *User instructions in AutoHEC/src/USER_HOW-TO.txt
+  *Technical documentation in AutoHEC/src/README.txt
+
+## Purpose ##
+This script was built to split subbasins in to a developed and
+an undeveloped portion based on a proposed future redevelopment rate.
+Then it applies a release rate to the reservoirs in each subbasin.
+The release rate is currently a single value for all subbasins in the
+automation, which can be manually edited after running InitHMS.py and
+before running HEC-HMS the second time in the *_input.json file
+(inputFileName defined in the parent_hecConfig_*.py file for the
+project), where * is the HMS project name. **This script depends on the *.u##
+file already being updated to have subbasins and reservoirs point to
+the new Junction names, which is "JN [subbasin name]".**
 
 
-## System requirements ##
-**This package only runs on Windows operating systems.**
+## Where to get the code ##
+This code is available at https://github.com/njsgaynor/AutoHEC
+
+
+## What you need to run this code ##
+* more details are available under "System Requirements" in README.txt *
 --Python 2.7.11 (code has not been tested with any other version)
---Python for Windows [Extensions](http://sourceforge.net/projects/pywin32/files/pywin32/Build%20219/pywin32-219.win32-py2.7.exe/download) x86 v219 (required for COM manipulation).
---HEC-DSSVue downloaded to the src/ directory; it does not need to
-  be installed.
---HEC-HMS and HEC-RAS must be installed on the system. The location
-  of HEC-HMS can be set in the parent_hecConfig_*.py configuration
-  file using self.hmsDir.
+--HEC-DSSVue downloaded
+--HEC-HMS and HEC-RAS installed
 
 
-## Known issues ##
-No known issues with this code. (7/8/2016)
-**A warning about using the HEC-RAS model: Do NOT edit the HTAB parameter
-in the HEC-RAS GUI. It causes a Fortran error in the model code itself.
-If you do and you get a Fortran error, replace the geometry file with
-the original version (which I hope you saved from a prior model setup).**
+## How to configure your run ##
+parent_hecConfig_*.py sets the overall configuration for the watershed. This
+includes the location of HEC-HMS, the model version (i.e. directory name),
+and model characteristics. *_hecConfig.py sets options specific to each
+HEC-HMS run listed in the command-line input file in runModel.cmd.
+
+src/Example_files contains example configuration files based on the
+Poplar Creek model set, specifically East Branch. These files show v005
+settings. The redevelopment rate is 20% for subbasins listed in
+alt_RD_basins.txt, 0.01% for subbasins listed in alt_RD_basins.txt, and
+40% for the remaining subbasins. The release rate is 0.1 cfs/acre for
+all subbasins listed in alt_RR_basins.txt and alt_RR_basins2.txt, and
+0.15 cfs/acre for all remaining subbasins. The canopy is 0.39 for all
+subbasins listed in alt_can_basins.txt and 0.52 for all remaining
+subbasins. The alternative redevelopment rates, release rates, and
+canopy files may be blank, in which case the alt numbers listed in the
+parent config file have no effect.
 
 
-## Structure of automation code from Optimatics (as modified by NJS Gaynor) ##
-# runModel.cmd #
-** You must choose the input text file that lists the names of the config files.
-   Use two colons to comment out all the options you do *not* wish to use.
-   runHMS.py and runRas.py must have "subhms = sys.stdin.readlines()" and
-   "subras = sys.stdin.readlines()" uncommented (no # at the beginning of
-   the line). **
---description: sets environmental variables and initiates python scripts; command-
-  line input should be text file that contains the prefixes for each hecConfig.py
-  file. This is how you run the model automation outside of an IDE. Output is stored
-  in output_hms.txt and output_ras.txt.
---depends on: runModel.py
+## Running the Scripts ##
+How to run code that splits basins and runs models**:
+1. Modify *_hecConfig.py files to find the files that need to be
+   modified to reflect the characteristics of the future subbasins.
+   (See parent_hecConfig_Example.py, Example_hmsConfig.py, and
+   Example_rasConfig.py)
+2. Modify/create a text file that lists the prefixes for the *_hecConfig.py
+   files needed for the HEC-HMS runs. Use this file name as the input in
+   runModel.cmd. (See Example_hms.txt and Example_ras.txt)
+3. Modify/create text files that list the subbasin names where alternative
+   release rates, redevelopment rates, and canopy values should be used.
+   that list the subbasins that should use the alternative release rates
+   These parameters are set using releaseratealt, releaseratealt2,
+   redevelopmentalt, redevelopmentalt2, and canopy alt. The file names are
+   alt_RR_basins.txt, alt_RR_basins2.txt, alt_RD_basins.txt,
+   alt_RD_basins2.txt, alt_can_basins.txt,  These files need to exist and
+   should be empty if all the subbasins use the regular release rate.
+4. Open Windows Command Prompt.
+5. Change to directory containing runModel.cmd (AutoHEC/src)
+   directory ("dir" lists directory contents and "cd" changes directory).
+6. Type "runModel.cmd" into the Windows command line and press Enter.
+   Output will be saved to output_hms.txt and output_ras.txt.
+**see README in SplitBasins directory for how to run the subbasin
+splitting code on its own
 
-# parent_hecConfig_*.py (class HecConfig imported as config) #
---description: config file with setup variables for HMS and RAS runs;
-  these files are copied to hecConfig.py for use in the program and the
-  original files are retained. There are different parent_hecConfig files for
-  each watershed.
---setme1: General settings for HMS and RAS. The only option that changes within
-  a watershed is self.modelVersion.
---setme2hms: HMS-specific settings. This is where you specify version
-  characteristics like release rate and precipitation.
---setme2ras: RAS-specific settings. These don't change within a watershed.
+## Error Checking ##
+Be sure to check the output files to make sure that there were no errors.
+Common errors may include:
+1. Jython/Java error, which would appear below the blocks set off in
+   colons (which indicates when the Jython interpreter starts in
+   HEC-DSSVue). This may indicate a corrupted file. Try recreating the
+   version directory from the source model.
+2. HEC-HMS error, which would be indicated after one of the HEC-HMS runs
+   on the line that starts with "End HEC-HMS" as "Exit status = -1". Try
+   manually running HEC-HMS. The most likely problem is that a reservoir
+   overflowed and the max storage in the rating curve needs to be slightly
+   increased.
+3. HEC-RAS runs in an absurdly short time (less than 70 seconds or so).
+   This will show up on the last line of the output file. Try running the
+   model manually in HEC-RAS to make sure it runs to completion. The most
+   likely problem is that the model became unstable or there was a HEC-HMS
+   error. Try using a different time step or locating where the model
+   becomes unstable. Adding or subtracting 0.01 to the HTAB parameter at
+   the unstable cross section and 3-5 cross sections on either side of it
+   may also help model stability. Do NOT edit the HTAB parameter in the
+   HEC-RAS GUI. This will cause a Fortran error in the model code itself.
 
-# hecConfig.py (class HecConfig imported as config) #
---description: generic file name used to run models. *_hmsConfig.py or
-  *_rasConfig.py is copied to this file name.
-
-# runModel.py #
---description: controls workflow that splits basins and runs HEC-HMS and HEC-RAS;
-  reads lines from input file to find config file for each subsubwatershed, if needed
---depends on: *hecConfig.py
-
-# hecModel.py (class Model) #
---description: contains all methods to control automation of HEC-HMS and HEC-RAS
---depends on: RunHecHmsModel.py, createStorageOutflowCurves.py,
-  ExampleHydraulicComparison.py, win32com module
---runHms: runs HMS model using HEC-HMS.cmd
---newStorageOutflowCurves: creates new storage-outflow curves in the DSS file with dummy
-  data for use with the new Reservoirs
---createStorageOutflowCurves(subbasins): modifies the storage-outflow curve data based on
-  Amanda Flegel's algorithm
---runRas: runs HEC-RAS using HECRASController
---getHydraulicResults(ditchNames) [not currently used]: retrieves and processes RAS results
-  from DSS file using ExampleHydraulicComparison.py and ExampleDssUsage.py
-
-# runHms.py (added by NJS Gaynor) #
---description: runs HMS model for each subwatershed
---depends on: runModel.py, SplitBasins/InitHMS.py
-
-# runRas.py (added by NJS Gaynor) #
---description: runs RAS model for each subwatershed
---depends on: hecModel.py, runModel.py
-
-# runHecHmsModel.py #
---description: runs HEC-HMS instance using hms python module; exactly as in HEC-HMS
-  documentation for command line use of the model
---depends on: hecConfig.py, hms module
---called from: hecModel.py
-
-# dummyStorageOutflowCurves.py (added by NJS Gaynor) #
---description: creates dummy storage outflow curves using HEC-DSSVue jython script and inserts
-  table into DSS file for use with new Reservoirs added in InitHMS.py
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
-
-# copyStorageOutflowCurves.py (added by NJS Gaynor) #
---description: copies storage outflow curves from a HEC-HMS DSS file that used 24h precip
-  and pastes the curves into the corresponding run that uses 12h precip, using HEC-DSSVue
-  jython script, for use with new Reservoirs added in InitHMS.py
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
-
-# createStorageOutflowCurves.py #
---description: replaces the dummy storage-outflow curve created in dummyStorageOutflowCurves.py
-  because this method assumes the table exists; initial storage is the accumulation of the inflow
-  until the inflow exceeds 3% of the allowable release rate for the subbasin (based on subbasin
-  size and a 0.3 cfs/acre release rate); then outflow hydrograph is a straight line
-  from that point to the point at which inflow drops below the max allowable release rate. For
-  any times where the hydrograph dips below the rating curve, the storage for that time step is
-  set to zero (would otherwise be negative) in order to avoid model errors. Also, some subbasins
-  do not require detention; in that case the rating curve is assigned such that the reservoir
-  is free flowing. The entire rating curve is multiplied by 1.01 to avoid rounding errors, which
-  cause more reservoirs to overflow during the second HEC-HMS run.
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
---indexOfMaxValue(hydrograph): finds the index of the maximum value in the inflow hydrograph
---findFirst(sequence, predicate): find the first element in which predicate is true
---findLast(sequence, predicate): find the last element in which predicate is true
---any(predicate, container): returns true if predicate is true in any element of the container
---flowFileDates: finds all dates for FLOW files in the DSS catalog give specified model run;
-  will not be accurate if there is more than one set of data for the specified model run (i.e.
-  more than one distinct time period)
---buildInflowHydrograph(subbasinName)[calls flowFileDates]: retrieves the FLOW data from the RAS DSS file and
-  concatenates it into a single time series
---buildStorageOutflowCurve(subbasinName, subBasinArea, allowableReleaseRatePerAcre) [calls
-  buildInflowHydrograph, buildStorageOutflowCurveFromHydrograph]: returns values from
-  buildStorageOutflowCurveFromHydrograph
---findInflowStart(hydrograph, subBasinArea) [calls indexOfMaxValue, findFirst]: finds the
-  beginning of the outflow hydrograph (i.e. where the inflow hydrograph exceeds 3% of the
-  max allowable release rate for the subbasin based on 0.3 cfs/acre)
---findMaxReleaseRateIndex(hydrograph, allowableReleaseRate) [calls indexOfMaxValue, findLast]:
-  finds the end of the outflow hydrograph (i.e. where the inflow drops below the max
-  allowable release rate for the subbasin based on 0.3 cfs/acre)
---buildStorageOutflowCurveFromHydrograph(inflowHydrograph, SubBasinArea, allowableReleaseRatePerAcre)
-  [calls findInflowStart, findMaxReleaseRateIndex]: calculates each time step of the straight-line
-  outflow hydrograph from the index found in findInflowStart to the index found in
-  findMaxReleaseRateIndex and calculates the accumulated storage over this period; uses a 1.01
-  multiplier to attempt to account for insufficient max storage problem in HEC-HMS
---writeTable(tableName, storage, outflowRates): writes new storage-outflow table to the RAS
-  DSS file
---recordTotalStorage(storage, subbasin, totStorage): records the max storage from each storage-outflow
-  curve
---writeTotalStorage(totStorage, fileName, filePath): writes total storage for each subbasin to a
-  CSV file named *_storage.csv stored in the model version directory
-
-
-### NOT USED ###
-
-# ExampleDssUsage.py #
---description: shows how to access (read/write) data to DSS file
---depends on: hec module, *hecConfig.py
---GetMaxValueIndex(hydrograph): finds index of the maximum value in hydrograph
-
-# ExampleHydraulicComparison.py #
---description: retrieves hydraulic results from DSS file (does nothing with them yet)
---depends on: hec module, *hecConfig.py
---GetMaxValueIndex(hydrograph): finds index of the maximum value in hydrograph
+## Notes ##
+--I repeat, do NOT edit the HTAB parameter in the HEC-RAS GUI. If you do
+  and you get a Fortran error, replace the geometry file with the original
+  version (which I hope you saved from a prior model setup).
