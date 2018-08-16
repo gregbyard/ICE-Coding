@@ -1,0 +1,158 @@
+
+C:\Program Files (x86)\HEC\HEC-DSSVue>java\bin\java -ms64M -mx1000M -Dpython.path=jar\sys\jythonLib.jar\lib;jar\sys\jythonUtils.jar -Dpython.home="C:\Users\nschiff2\AppData\Local\Temp" -DPLUGINS=Plugins -Djava.library.path=lib -Dproperties.path=config\properties -Djava.security.policy=config\java.policy -Dsun.java2d.noddraw -Dsun.java2d.d3d=false -Dlogfile.directory="C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue\logs" -DLOGFILE="C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue\logs\HEC-DSSVue.log" -DCACHE_DIR="C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue\pythonCache" -Dscripts.directory="C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue\scripts" -DCWMS_HOME="C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue" -Dv2  -cp Plugins\ChartPlugin.jar;Plugins\DssutlImportExport.jar;Plugins\ExcelDssVuePlugin.jar;Plugins\NCDC.jar;Plugins\RiverGages.jar;Plugins\TimeSeriesWiz.jar;Plugins\USGS.jar;Plugins\WaterML.jar;Plugins\ChartPlugin.jar;jar\help\dssvueHelp.jar;jar\hec.jar;jar\gridUtil.jar;jar\hecdata.jar;jar\rma.jar;jar\images.jar;jar\heclib.jar;jar\sys\jdom.jar;jar\sys\jh.jar;jar\sys\jfreechart.jar;jar\sys\jcommon.jar;jar\sys\jai_core.jar;jar\sys\jai_imageio.jar;jar\sys\jai_codec.jar;jar\sys\jxl.jar;jar\sys\jythonUtils.jar;jar\sys\jythonlib.jar;jar\sys\jython.jar;jar\sys\codebase.jar; hec.dssgui.HecDssVue -s C:/Users/nschiff2/Documents/AutoHECexp/src/Analysis/getSOData.py 
+Version stamp is 2.0.0.17G date 2010.02.09.04.41 
+::::::::
+::
+:: Initializing Jython interpreter environment.
+:: Application home variable = CWMS_HOME
+:: CWMS_HOME = C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue
+:: Jython script path = jar\sys\jythonLib.jar\lib;jar\sys\jythonUtils.jar
+::
+::::::::
+Debug off; no logging properties file: C:\Users\nschiff2\AppData\Roaming\HEC\HEC-DSSVue/config/properties/logger.properties
+    -----DSS---ZOPEN:  Existing File Opened,  File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v000/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dss
+                       Unit:   71;  DSS Versions - Software: 6-QF, File: 6-ND
+ Catalog File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v000/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dsc
+ -----DSS--- ZREAD Unit   71; Vers.   22:  //AT&T POND 21/STORAGE-FLOW///TABLE/
+    -----DSS---ZOPEN:  Existing File Opened,  File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v001/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dss
+                       Unit:   72;  DSS Versions - Software: 6-QF, File: 6-ND
+ Catalog File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v001/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dsc
+ -----DSS--- ZREAD Unit   72; Vers.   22:  //AT&T POND 21/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0001MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0002MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0003MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0004MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0005MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0006MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0007MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0008MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0009MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0010MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0011MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0012MWRD_7.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0013MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0014MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0015MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0016MWRD_7.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0017MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0018MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0019MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0020MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0021MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0022MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0023MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0024MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0025MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0026MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0027MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0028MWRD_15.0_0.15/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   72; Vers.    2:  //PCEB0029MWRD_0.01_0.15/STORAGE-FLOW///TABLE/
+    -----DSS---ZOPEN:  Existing File Opened,  File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v002/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dss
+                       Unit:   73;  DSS Versions - Software: 6-QF, File: 6-ND
+ Catalog File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v002/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dsc
+ -----DSS--- ZREAD Unit   73; Vers.   22:  //AT&T POND 21/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0001MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0002MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0003MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0004MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0005MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0006MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0007MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0008MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0009MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0010MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0011MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0012MWRD_7.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0013MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0014MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0015MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0016MWRD_7.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0017MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0018MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0019MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0020MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0021MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0022MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0023MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0024MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0025MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0026MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0027MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0028MWRD_15.0_0.2/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   73; Vers.    2:  //PCEB0029MWRD_0.01_0.2/STORAGE-FLOW///TABLE/
+    -----DSS---ZOPEN:  Existing File Opened,  File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v003/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dss
+                       Unit:   74;  DSS Versions - Software: 6-QF, File: 6-ND
+ Catalog File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v003/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dsc
+ -----DSS--- ZREAD Unit   74; Vers.   22:  //AT&T POND 21/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0001MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0002MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0003MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0004MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0005MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0006MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0007MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0008MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0009MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0010MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0011MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0012MWRD_7.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0013MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0014MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0015MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0016MWRD_7.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0017MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0018MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0019MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0020MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0021MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0022MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0023MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0024MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0025MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0026MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0027MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0028MWRD_15.0_0.25/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   74; Vers.    2:  //PCEB0029MWRD_0.01_0.25/STORAGE-FLOW///TABLE/
+    -----DSS---ZOPEN:  Existing File Opened,  File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v004/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dss
+                       Unit:   75;  DSS Versions - Software: 6-QF, File: 6-ND
+ Catalog File: G:/PROJECTS_non-FEMA/MWRD_ReleaseRate_PhaseII/H&H/Poplar_models/v004/HEC-HMS/PC_EastBranchHMS/EastBranch_Poplar.dsc
+ -----DSS--- ZREAD Unit   75; Vers.   22:  //AT&T POND 21/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0001MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0002MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0003MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0004MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0005MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0006MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0007MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0008MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0009MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0010MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0011MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    5:  //PCEB0012MWRD_7.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    5:  //PCEB0013MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0014MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0015MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0016MWRD_7.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0017MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0018MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0019MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0020MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0021MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0022MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0023MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0024MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0025MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0026MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0027MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0028MWRD_15.0_0.3/STORAGE-FLOW///TABLE/
+ -----DSS--- ZREAD Unit   75; Vers.    2:  //PCEB0029MWRD_0.01_0.3/STORAGE-FLOW///TABLE/
+
+C:\Program Files (x86)\HEC\HEC-DSSVue>endlocal
+done
+Reading storage-outflow data from text files...
+Key too short, using longer key: AT&T POND 21
+Key too short, using longer key: AT&T POND 21
+Key too short, using longer key: AT&T POND 21
+Key too short, using longer key: AT&T POND 21
+Key too short, using longer key: AT&T POND 21
+Plotting storage-outflow data...

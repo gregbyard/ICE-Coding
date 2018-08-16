@@ -1,153 +1,248 @@
-### AutoHEC ###
+### Splitting subbasins: part of the AutoHEC package ###
 Code repository for automation scripts related to the Metropolitan Water
 Reclamation District of Greater Chicago Watershed Release Rate project
-at the Illinois State Water Survey (2015-2018).
+at the Illinois State Water Survey (2015-2016).
   *Developed using Python 2.7.11, HEC-HMS 3.5, HEC-RAS 4.0, and HEC-DSSVue 2.0.1
-  *Creator(s): Optimatics (optimatics.com); Nicole JS Gaynor, ISWS
-  *User instructions in AutoHEC/src/USER_HOW-TO.txt
+  *Creator(s): Nicole JS Gaynor, ISWS
+  *User instructions in AutoHEC/src/SplitBasins/USER_HOW-TO.txt
 
 
-## System requirements ##
-**This package only runs on Windows operating systems.**
---Python 2.7.11 (code has not been tested with any other version)
---Python for Windows [Extensions](http://sourceforge.net/projects/pywin32/files/pywin32/Build%20219/pywin32-219.win32-py2.7.exe/download) x86 v219 (required for COM manipulation).
---HEC-DSSVue downloaded to the src/ directory; it does not need to
-  be installed.
---HEC-HMS and HEC-RAS must be installed on the system. The location
-  of HEC-HMS can be set in the parent_hecConfig_*.py configuration
-  file using self.hmsDir.
+## Structure of subbasin splitting code ##
+# runInitHMS.cmd #
+--description: Windows command-line script that runs InitHMS.py
+  and outputs to InitHMSout.txt; **may need to edit python path**
+--depends on: InitHMS.py
 
+# InitHMS.py [driver script] #
+--description: drives the process of splitting subbasins in the
+  specified (sub)watershed; this is the main script for the pre-
+  processing of data for HEC-HMS and HEC-RAS model runs
+--depends on: contents of hecElements, Subwatershed_class,
+  Tablenames_class, SBDict_class
+--copyFiles(ws, metFile): creates backup copies of the input *.basin file,
+  *.pdata file, and *.dss file
+--readSubbasinOptionsFiles(modelVersion, altRD, altRD2, altRR, altRR2, altCAN):
+  reads the text files that contain lists of subbasin names for which the model
+  should use alternative redevelopment rates, release rates, or canopy values.
+--readBasinFile(ws, scriptPath, modelVersion): reads the input *.basin file,
+  splits subbasins (and does related tasks via imported modules, and writes
+  updated *.basin file
+--readLists(fileName): reads a file with one item per line into a list
+--writeJsonInput(subbasinList, stationList, inputFileName): outputs list of
+  subbasin names and list of stations to a JSON file for use in a later script.
+--modMetFile(metFile, metData, hmsPath, sbList): adds the new
+  subbasins to the relevant *.met file
+--main(config): drives the workflow
 
-## Known issues ##
-No known issues with this code. (7/8/2016)
-**A warning about using the HEC-RAS model: Do NOT edit the HTAB parameter
-in the HEC-RAS GUI. It causes a Fortran error in the model code itself.
-If you do and you get a Fortran error, replace the geometry file with
-the original version (which I hope you saved from a prior model setup).**
+# Subwatershed_class.py #
+--description: dictionary class that stores subwatershed
+  characteristics, with _keys pre-defined for watershed name,
+  subwatershed name, *.basin input file, *.basin output file,
+  *.pdata file, *.dss file, % redevelopment, curve number, and
+  release rate
+--depends on: None
+--getKeys: returns keys for instances
+--__init__(config): instantiates Subwatershed with keys in _keys;
+  assigns value of None to pre-defined keys. Calls functions to
+  add real values to keys from config file.
+--chooseWatershed: assigns values to watershed and subwatershed
+  keys; both currently set to None
+--setFilenames(config): assigns values of *.basin input file,
+  *.basin output file, *.pdata file, and *.dss file
+--setParams(config): assigns % redevelopment, curve number,
+  and release rate to appropriate keys
 
+# SBList_class.py #
+--description: list class that contains subbasin name, release rate
+  subbasin area, and table name
+--depends on: None
+--__init__: instantiates basic list
+--newItem(n, rr, a, tN): creates a new list item and assigns values to
+  the subbasin properties listed in the description
+--remove(x): deletes item with key x from the dictionary
+--writeSbPairs(sbOut): writes entire list to JSON file specified in sbOut
 
-## Structure of automation code from Optimatics (as modified by NJS Gaynor) ##
-# runModel.cmd #
-** You must choose the input text file that lists the names of the config files.
-   Use two colons to comment out all the options you do *not* wish to use.
-   runHMS.py and runRas.py must have "subhms = sys.stdin.readlines()" and
-   "subras = sys.stdin.readlines()" uncommented (no # at the beginning of
-   the line). **
---description: sets environmental variables and initiates python scripts; command-
-  line input should be text file that contains the prefixes for each hecConfig.py
-  file. This is how you run the model automation outside of an IDE. Output is stored
-  in output_hms.txt and output_ras.txt.
---depends on: runModel.py
+# TableNames_class.py #
+--description: list class that contains a list of lists,
+  where the sublist includes subbasin name, table name,
+  subbasin area, and release rate
+--depends on: None
+--__init__: instantiates basic list
+--append(x): adds x to the end of the list
+--remove(x): finds x and removes it from the list
+--writeTableFile(tableOut): writes table to JSON file tableOut
 
-# parent_hecConfig_*.py (class HecConfig imported as config) #
---description: config file with setup variables for HMS and RAS runs;
-  these files are copied to hecConfig.py for use in the program and the
-  original files are retained. There are different parent_hecConfig files for
-  each watershed.
---setme1: General settings for HMS and RAS. The only option that changes within
-  a watershed is self.modelVersion.
---setme2hms: HMS-specific settings. This is where you specify version
-  characteristics like release rate and precipitation.
---setme2ras: RAS-specific settings. These don't change within a watershed.
+# hecElements/Property_class.py #
+--description: dictionary class that contains
+  property_name:property_value pairs, which are the basis for named
+  properties in the Elements class (and its child classes)
+--depends on: None
+--__init__(name): instantiates dictionary with key set to name and
+  value set to None
+--newProperty(name, value) [classmethod]: instantiates new Property
+  with key of name and value of value
+--getValue: returns value of Property instance
+--setValue: sets the value of a given property
+--getAsFloat: returns value as float; error if cannot be converted
+--getAsString: returns value as string; error if cannot be converted
+--getName: returns key of Property instance
+--setName(name): sets key to name
 
-# hecConfig.py (class HecConfig imported as config) #
---description: generic file name used to run models. *_hmsConfig.py or
-  *_rasConfig.py is copied to this file name.
+# hecElements/Element_class.py #
+--description: list class that contains Property instances; parent
+  class for types of elements in *.basin HEC-HMS files
+--depends on: Property_class
+--__init__(category, identifier): instantiates Element with category
+  and identifier set to input values
+--getIdentifier: returns value of identifer
+--setIdentifier(identifier): sets identifier property to input
+--getCategory: returns value of category
+--setCategory(category): sets category property to input
+--deserialize(currentLine, infile): reads a single element from *.basin
+  input file starting at line currentLine
+--serialize(outfile): writes a single element to *.basin output file
+--add(x): adds Property x to an Element instance
+--remove(x): removes Property x from an Element instance; returns error
+  if property does not exit in Element instance
 
-# runModel.py #
---description: controls workflow that splits basins and runs HEC-HMS and HEC-RAS;
-  reads lines from input file to find config file for each subsubwatershed, if needed
---depends on: *hecConfig.py
+# hecElements/Basin_class.py #
+--description: list class that contains Property instances for Basin
+  items in *.basin HEC-HMS files
+--depends on: Element_class
+--__init__: instantiates an Element with category "Basin"
+--readBasin(currentLine, basinsrc, basinsink) [classmethod]: reads a
+  single Basin element from *.basin input file and writes it to
+  *.basin output file; returns Basin instance.
 
-# hecModel.py (class Model) #
---description: contains all methods to control automation of HEC-HMS and HEC-RAS
---depends on: RunHecHmsModel.py, createStorageOutflowCurves.py,
-  ExampleHydraulicComparison.py, win32com module
---runHms: runs HMS model using HEC-HMS.cmd
---newStorageOutflowCurves: creates new storage-outflow curves in the DSS file with dummy
-  data for use with the new Reservoirs
---createStorageOutflowCurves(subbasins): modifies the storage-outflow curve data based on
-  Amanda Flegel's algorithm
---runRas: runs HEC-RAS using HECRASController
---getHydraulicResults(ditchNames) [not currently used]: retrieves and processes RAS results
-  from DSS file using ExampleHydraulicComparison.py and ExampleDssUsage.py
+# hecElements/Subbasin_class.py #
+--description: list class that contains Property instances for
+  Subbasin items in *.basin HEC-HMS files
+--depends on: Element_class, Property_class, Junction_class,
+  Reservoir_class, copy
+--__init__: instantiates an Element with category "Subbasin" and
+  Properties for area, downstream, curve number, percent impervious
+  area, canvas x, canvas y, canopy, release rate, and percent
+  redevelopment; Property values set to None
+--readSubbasin(currentLine, basinsrc, basinsink, redevel, altRDdict,
+  curvenum, rlsrate, altRRdict, canopyrate, altCANdict) [classmethod]:
+  reads a single Subbasin element from *.basin input file. Calls
+  functions that divide the subbasin, add a reservoir, and add a
+  junction. Assigns values as appropriate to pre-defined Properties.
+  Writes Subbasin element to *.basin output file; returns Subbasin
+  instance with Properties updated to reflect subbasin division, new
+  subbasin, and name of storage-outflow table for new subbasin.
+--add(x): adds Property x to instance of Subbasin, using pre-defined
+  Property if available; error if x is not an instance of Property.
+--remove(x): removes x from instance of Subbasin or assigns value of
+  None if it is a pre-defined Property; returns error if not found.
+--divideSubbasin(basinsink, redevel, curvenum, rlsrate, canrate):
+  Divides subbasin based on percent redevelopment with new subbasin
+  occupying the portion that is redeveloped and old subbasin area
+  reduced to the remainder. Calls functions to create new Subbasin,
+  Junction, and Reservoir instances. Routes new subbasin through
+  Reservoir to Junction and old subbasin directly to Junction so that
+  measurements at Junction are for entire subbasin (new + old). Sets
+  release rate and redevelopment percent of new subbasin.
+--newSubbasin(s, basinsink, redevel, curvenum, canrate) [classmethod]:
+  copies Subbasin s to new instance of Subbasin. Sets properties to
+  reflect characteristics of redeveloped area. Writes new subbasin to
+  *.basin output file. Returns Subbasin instance of new subbasin.
 
-# runHms.py (added by NJS Gaynor) #
---description: runs HMS model for each subwatershed
---depends on: runModel.py, SplitBasins/InitHMS.py
+# hecElements/Junction_class.py #
+--description: list class that contains Property instances for
+  Junction items in *.basin HEC-HMS files
+--depends on: Element_class, Property_class
+--__init__: instantiates an Element with category "Junction" and
+  Property for downstream; Property value set to None
+--readJunction(currentLine, basinsrc, basinsink) [classmethod]: reads
+  a single Junction element from *.basin input file. Writes Junction
+  element to *.basin output file; returns Junction instance.
+--add(x): adds Property x to instance of Junction, using pre-defined
+  Property if available; error if x is not an instance of Property.
+--remove(x): removes x from instance of Junction or assigns value of
+  None if it is a pre-defined Property; returns error if not found.
+--newJunction(s, basinsink) [classmethod]: instantiates new Junction
+  and sets properties as appropriate based on those in Subbasin s.
+  Writes Junction element to *.basin output file. Returns instance
+  of Junction.
 
-# runRas.py (added by NJS Gaynor) #
---description: runs RAS model for each subwatershed
---depends on: hecModel.py, runModel.py
+# hecElements/Reservoir_class.py #
+--description: list class that contains Property instances for
+  Reservoir items in *.basin HEC-HMS files
+--depends on: Element_class, Property_class
+--__init__: instantiates an Element with category "Reservoir" and
+  Properties for downstream and storage-outflow table; Property values
+  set to None.
+--readReservoir(currentLine, basinsrc, basinsink)
+  [classmethod]: reads a single Reservoir element from *.basin input
+  file. Writes Reservoir element to *.basin output file; returns
+  instance of Reservoir.
+--add(x): adds Property x to instance of Reservoir, using pre-defined
+  Property if available; error if x is not an instance of Property.
+--remove(x): removes x from instance of Reservoir or assigns value of
+  None if it is a pre-defined Property; returns error if not found.
+--newReservoir(s, basinsink, redevel, rlsrate) [classmethod]:
+  instantiates new Reservoir and sets properties as appropriate based
+  on those in Subbasin s. Sets storage-outflow table name based on
+  subbasin name, % redevelopment, and release rate. Writes Reservoir
+  element to *.basin output file. Returns instance of Reservoir.
 
-# runHecHmsModel.py #
---description: runs HEC-HMS instance using hms python module; exactly as in HEC-HMS
-  documentation for command line use of the model
---depends on: hecConfig.py, hms module
---called from: hecModel.py
+# hecElements/Reach_class.py #
+--description: list class that contains Property instances for
+  Reach items in *.basin HEC-HMS files
+--depends on: Element_class, Property_class
+--__init__: instantiates an Element with category "Reach" and
+  Property for downstream; Property value set to None.
+--readReach(currentLine, basinsrc, basinsink) [classmethod]: reads a
+  single Reach element from *.basin input file. Writes Reach
+  element to *.basin output file; returns instance of Reach.
+--add(x): adds Property x to instance of Reach, using pre-defined
+  Property if available; error if x is not an instance of Property.
+--remove(x): removes x from instance of Reach or assigns value of
+  None if it is a pre-defined Property; returns error if not found.
 
-# dummyStorageOutflowCurves.py (added by NJS Gaynor) #
---description: creates dummy storage outflow curves using HEC-DSSVue jython script and inserts
-  table into DSS file for use with new Reservoirs added in InitHMS.py
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
+# hecElements/Diversion_class.py #
+--description: list class that contains Property instances for
+  Diversion items in *.basin HEC-HMS files
+--depends on: Element_class, Property_class
+--__init__: instantiates an Element with category "Diversion" and
+  Properties for downstream and divert to; Property values set to None.
+--readDiversion(currentLine, basinsrc, basinsink) [classmethod]: reads a
+  single Diversion element from *.basin input file. Writes Diversion
+  element to *.basin output file; returns instance of Diversion.
+--add(x): adds Property x to instance of Diversion, using pre-defined
+  Property if available; error if x is not an instance of Property.
+--remove(x): removes x from instance of Diversion or assigns value of
+  None if it is a pre-defined Property; returns error if not found.
 
-# copyStorageOutflowCurves.py (added by NJS Gaynor) #
---description: copies storage outflow curves from a HEC-HMS DSS file that used 24h precip
-  and pastes the curves into the corresponding run that uses 12h precip, using HEC-DSSVue
-  jython script, for use with new Reservoirs added in InitHMS.py
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
+# hecElements/Sink_class.py #
+--description: list class that contains Property instances for Sink
+  items in *.basin HEC-HMS files
+--depends on: Element_class
+--__init__: instantiates an Element with category "Sink"
+--readSink(currentLine, basinsrc, basinsink) [classmethod]: reads a
+  single Sink element from *.basin input file and writes it to
+  *.basin output file; returns instance of Sink.
 
-# createStorageOutflowCurves.py #
---description: replaces the dummy storage-outflow curve created in dummyStorageOutflowCurves.py
-  because this method assumes the table exists; initial storage is the accumulation of the inflow
-  until the inflow exceeds 3% of the allowable release rate for the subbasin (based on subbasin
-  size and a 0.3 cfs/acre release rate); then outflow hydrograph is a straight line
-  from that point to the point at which inflow drops below the max allowable release rate. For
-  any times where the hydrograph dips below the rating curve, the storage for that time step is
-  set to zero (would otherwise be negative) in order to avoid model errors. Also, some subbasins
-  do not require detention; in that case the rating curve is assigned such that the reservoir
-  is free flowing. The entire rating curve is multiplied by 1.01 to avoid rounding errors, which
-  cause more reservoirs to overflow during the second HEC-HMS run.
---depends on: hec module, *hecConfig.py, ExampleHydraulicComparison.py (by way of dtf file)
---indexOfMaxValue(hydrograph): finds the index of the maximum value in the inflow hydrograph
---findFirst(sequence, predicate): find the first element in which predicate is true
---findLast(sequence, predicate): find the last element in which predicate is true
---any(predicate, container): returns true if predicate is true in any element of the container
---flowFileDates: finds all dates for FLOW files in the DSS catalog give specified model run;
-  will not be accurate if there is more than one set of data for the specified model run (i.e.
-  more than one distinct time period)
---buildInflowHydrograph(subbasinName)[calls flowFileDates]: retrieves the FLOW data from the RAS DSS file and
-  concatenates it into a single time series
---buildStorageOutflowCurve(subbasinName, subBasinArea, allowableReleaseRatePerAcre) [calls
-  buildInflowHydrograph, buildStorageOutflowCurveFromHydrograph]: returns values from
-  buildStorageOutflowCurveFromHydrograph
---findInflowStart(hydrograph, subBasinArea) [calls indexOfMaxValue, findFirst]: finds the
-  beginning of the outflow hydrograph (i.e. where the inflow hydrograph exceeds 3% of the
-  max allowable release rate for the subbasin based on 0.3 cfs/acre)
---findMaxReleaseRateIndex(hydrograph, allowableReleaseRate) [calls indexOfMaxValue, findLast]:
-  finds the end of the outflow hydrograph (i.e. where the inflow drops below the max
-  allowable release rate for the subbasin based on 0.3 cfs/acre)
---buildStorageOutflowCurveFromHydrograph(inflowHydrograph, SubBasinArea, allowableReleaseRatePerAcre)
-  [calls findInflowStart, findMaxReleaseRateIndex]: calculates each time step of the straight-line
-  outflow hydrograph from the index found in findInflowStart to the index found in
-  findMaxReleaseRateIndex and calculates the accumulated storage over this period; uses a 1.01
-  multiplier to attempt to account for insufficient max storage problem in HEC-HMS
---writeTable(tableName, storage, outflowRates): writes new storage-outflow table to the RAS
-  DSS file
---recordTotalStorage(storage, subbasin, totStorage): records the max storage from each storage-outflow
-  curve
---writeTotalStorage(totStorage, fileName, filePath): writes total storage for each subbasin to a
-  CSV file named *_storage.csv stored in the model version directory
+# hecElements/BasinSchema_class.py #
+--description: list class that contains Property instances for Basin
+  Schematic Properties items in *.basin HEC-HMS files
+--depends on: Element_class
+--__init__: instantiates an Element with category "Basin Schematic
+  Properties"
+--readBasinSchema(currentLine, basinsrc, basinsink) [classmethod]:
+  reads a single Basin Schematic Properties element from *.basin input
+  file and writes it to *.basin output file; returns instance of
+  BasinSchema.
 
-
-### NOT USED ###
-
-# ExampleDssUsage.py #
---description: shows how to access (read/write) data to DSS file
---depends on: hec module, *hecConfig.py
---GetMaxValueIndex(hydrograph): finds index of the maximum value in hydrograph
-
-# ExampleHydraulicComparison.py #
---description: retrieves hydraulic results from DSS file (does nothing with them yet)
---depends on: hec module, *hecConfig.py
---GetMaxValueIndex(hydrograph): finds index of the maximum value in hydrograph
+# hecElements/Pdata_class.py #
+--description: provides the properties of a Table that will be
+  added to the *.pdata file
+--depends on: Element_class, Property_class, datetime.datetime,
+  calendar
+--__init__: instantiates new Element item with category "Table";
+  Properties for DSS file that contains the storage-outflow table
+  and the path to the table within the DSS file.
+--newPdata(soname, pdatasink, dssfile) [classmethod]: instantiates
+  new Pdata; creates and adds all Properties for new entry in *.pdata
+  file. Writes instance to *.pdata file.
